@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<title>Todo</title>
+	<link rel="stylesheet" href="../styles/style.css">
+</head>
+<body>
+	<h1>Todo</h1>
+	<div align="center">
+	<form method="post" action="/new">
+		<p><font size="-1">メモ</font>
+		<input type="text" name="memo" size="30" placeholder="入力してください">
+		<input type="submit" value="登録"></p>
+	</form>
+	</div>
+	<div class="container">
+	<ul>
+		{{ range .todos }}
+			<li>{{.Memo}}
+			<!-- 編集 -->
+			<label>
+			<a href="/edit/{{.ID}}">[編集]</a>
+			</label>
+			<!-- 削除 -->
+			<label>
+			<a onclick="var ok=confirm('本当に削除しますか？');
+			if (ok) location.href='delete/{{.ID}}'; return false;"><span class="delete">[削除]</span></a>
+			</label>
+			</li>
+		{{ end }}
+	</ul>
+	</div>
+</body>
+</html>
